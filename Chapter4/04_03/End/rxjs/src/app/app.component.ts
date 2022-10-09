@@ -26,7 +26,6 @@ export class AppComponent {
       .do(x => console.log('do', x))
       .switchMap(searchString => this.queryAPI(searchString)) //>We use switchMap because if changing the search string while we're waiting for the query to come back
                                                               //we want it to cancel the old one and replace it.
-
   }
 
 queryAPI(searchString){
