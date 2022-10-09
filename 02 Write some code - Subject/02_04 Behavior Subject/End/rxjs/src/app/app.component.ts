@@ -17,8 +17,9 @@ export class AppComponent {
     this.mySubject$.next(1);
     this.mySubject$.next(2);
     // this.mySubject$.unsubscribe();
-    this.mySubject$.subscribe(x => console.log('second subscribe', x));
-    this.mySubject$.next(3);
+    this.mySubject$.subscribe(x => console.log('second subscribe', x)); //got last value 2 from first subs plus first value 3 from second subs (latest current value)
+    this.mySubject$.next(3); //send notifications/values to both subscribers
+    //Output: 200,1,2 2 3 3
   }
 
   ngOnDestroy() {
