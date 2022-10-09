@@ -20,11 +20,12 @@ export class AppComponent {
   results$: Observable<any>;
 
   ngOnInit() {
-    this.results$ = this.searchSubject$
+    this.results$ = this.searchSubject$ //you don't need to subscribe because you are using async pipe
       .debounceTime(200)
-      .distinctUntilChanged()
+      .distinctUntilChanged() //skip any values that are identical to the previous value
       .do(x => console.log('do', x))
-      .switchMap(searchString => this.queryAPI(searchString))
+      .switchMap(searchString => this.queryAPI(searchString)) //>We use switchMap because if changing the search string while we're waiting for the query to come back
+                                                              //we want it to cancel the old one and replace it.
 
   }
 
